@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXS Ticket App</title>
+<style>
+  /* =========================
+     🌐 GLOBAL / APP STYLES
+     ========================= */
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0c0c29;
+    color: white;
+    overflow-x: hidden;
+  }
+
+  .app {
+    max-width: 420px;
+    margin: auto;
+    position: relative;
+  }
+
+  /* =========================
+     🔝 TOP HEADER
+     ========================= */
+  .top-bar {
+    background-color:  #0c0c29;
+    padding: 14px;
+    border-bottom: 1px solid #0c0c0c;
+  }
+
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .icon, .info-icon {
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 15px;
+    margin: 8px 0 2px;
+  }
+
+  .ticket-info {
+    text-align: center;
+    font-size: 10px;
+    color: #ccc;
+    margin: 0 0 10px;
+  }
+
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid #222;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    color: #aaa;
+    border: none;
+    cursor: pointer;
+  }
+
+  .tab.active {
+    color: #00aaff;
+    border-bottom: 2px solid #00aaff;
+  }
+
+  /* =========================
+     🧱 SCREEN VISIBILITY LOGIC
+     ========================= */
+  .screen {
+    display: none;
+    padding: 16px;
+  }
+
+  .screen.active {
+    display: block;
+  }
+
+  /* =========================
+     🟦 SCREEN 1 – EVENT INFO
+     ========================= */
+  .event-img {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .info h2 {
+    margin-top: 14px;
+    font-size: 25px;
+  }
+
+  .sub {
+    opacity: 0.7;
+  }
+
+  .detail {
+    margin-top: 12px;
+  }
+
+  /* =========================
+     🟨 SCREEN 2 – TICKET / QR CODE
+     ========================= */
+  .scan-text {
+    text-align: center;
+    margin: 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .qr-card {
+    color: black;
+    padding: 16px;
+    border-radius: 16px;
+    text-align: center;
+    background: #fff;
+  }
+
+  .qr {
+    width: 200px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 14px;
+    background: #1d3be4;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .entry-card {
+    background-color: #0b0b2a;
+    border-radius: 12px;
+    margin: 16px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+
+  .entry-card h4 {
+    background-color: #1d0781;
+    color: white;
+    margin: 0;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px 12px 0 0;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .entry-type {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background-color: #0f1a55;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .entry-card .grid {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    background-color: #0f1a55;
+  }
+
+  .entry-card .grid div {
+    text-align: center;
+  }
+
+  .entry-card .grid div small {
+    display: block;
+    font-size: 10px;
+    color: #aaa;
+  }
+
+  .entry-card .grid div p {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background-color: #222;
+  }
+
+  /* =========================
+     🟪 SCREEN 3 – SELECT SEATS TO TRANSFER
+     ========================= */
+  .transfer-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .close-btn {
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .steps {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .step {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgb(216, 213, 213);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+  }
+
+  .step.active {
+    background: #6f4fff;
+    width: 70px;
+    height: 30px;
+    border-radius: 13px;
+  }
+
+  .line {
+    flex: 1;
+    height: 2px;
+    background: #333;
+  }
+
+  .transfer-title {
+    margin: 16px 0;
+    font-size: 18px;
+  }
+
+  .transfer-card {
+    border: 2px solid #26266e;
+    border-radius: 16px;
+    padding: 14px;
+    height: 390px;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .event-thumb {
+    width: 60px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+
+  .seat-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 12px;
+    opacity: 0.9;
+    margin: 0;
+    padding: 8px 0;
+    background-color: #1d1d5c;
+    color: #fff;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .seat-row {
+    display: grid;
+    grid-template-columns: 24px 1fr 1fr 1fr;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+
+  .seat-info p {
+    margin: 0;
+  }
+
+  .seat-info small {
+    opacity: 0.6;
+  }
+
+  .continue-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 30px;
+    border: none;
+    background: #300fee;
+    color: white;
+    font-size: 16px;
+    cursor: not-allowed;
+  }
+
+  .continue-btn.enabled {
+    background: #007bff;
+    cursor: pointer;
+  }
+
+  /* =========================
+     🟦 SCREEN 4 – ADD RECIPIENT
+     ========================= */
+  .screen-4 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    background: #121229;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 100;
+    display: none;
+    box-sizing: border-box;
+  }
+
+  .screen-4.active { display: block; }
+
+  .transfer-header, .screen-title, .event-info, .form-group, .form-card, .recipient-header, .ticket-btn, textarea {
+    margin-bottom: 16px;
+  }
+
+  .back-arrow {
+    font-size: 28px;
+    cursor: pointer;
+  }
+
+  .form-card {
+    background: #1f1f3a;
+    border-radius: 14px;
+    padding: 12px;
+  }
+
+  .input-row {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+  }
+
+  .input-row:last-child {
+    border-bottom: none;
+  }
+
+  .input-row input {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+    text-align: right;
+    margin-top: 4px;
+  }
+
+  .required {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    font-size: 11px;
+    color: #777;
+  }
+
+  textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    background: #1f1f3a;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    resize: none;
+    box-sizing: border-box;
+  }
+
+  .continue-btn {
+    width: 100%;
+    padding: 14px;
+    background: #007bff;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+
+  /* =========================
+     🟩 SCREEN 5 – TRANSFER CONFIRMATION
+     ========================= */
+  .screen-5 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #121229;
+    padding: 16px;
+    display: none;
+    overflow-y: auto;
+    z-index: 100;
+  }
+
+  .screen-5.active { display: block; }
+
+  .transfer-summary {
+    background: #1f1f3a;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+
+  .recipient-info p, .recipient-info h4 {
+    margin: 4px 0;
+  }
+
+  .success-icon {
+    font-size: 50px;
+    text-align: center;
+    margin: 12px 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .actions .btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+  }
+
+  .edit-btn { background: #555; color: white; }
+  .done-btn { background: #007bff; color: white; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SCREEN 1 : EVENT INFO -->
+  <section class="screen screen-1 active">
+    <img src="../image/coachella.jpeg" class="event-img"/>
+    <div class="info">
+      <h2>Camp Flog Gnaw 2025</h2>
+      <p class="sub">2-DAY PASS</p>
+      <hr style="background-color: rgb(145, 144, 144);">
+      <div class="detail">
+        <h6 style="color: rgb(112, 111, 111);"><strong>Date & Time</strong></h6>
+        <h4 style="margin-top: -20px;">November 15, 2025 · 12:00</h4>
+      </div>
+      <div class="detail">
+        <h6 style="color: rgb(112, 111, 111);"><strong>Venue</strong></h6>
+        <h4 style="margin-top: -20px;">Dodger Stadium, Los Angeles, CA</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2 : TICKET / QR -->
+  <section class="screen screen-2">
+    <h3 class="scan-text">Scan For Entry</h3>
+    <div class="qr-card">
+      <img src="../image/code code.jpeg" class="qr"/>
+    </div>
+    <div class="actions">
+      <button class="btn transfer-btn">Transfer</button>
+      <button class="btn">Sell</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 3 : SELECT SEATS -->
+  <section class="screen screen-3">
+    <div class="transfer-top">
+      <span class="close-btn">✕</span>
+      <div class="steps">
+        <span class="step active">1. Select</span>
+        <span class="line"></span>
+        <span class="step">2</span>
+        <span class="line"></span>
+        <span class="step">3</span>
+      </div>
+    </div>
+    <h2 class="transfer-title">Select Seats to Transfer</h2>
+    <div class="transfer-card">
+      <label class="seat-row">
+        <input type="checkbox" class="seat-check" >
+        <div class="seat-info"><p>GA</p><small>2-DAY GA</small></div>
+        <span>GA</span>
+        <span>GA</span>
+      </label>
+      <label class="seat-row">
+        <input type="checkbox" class="seat-check" >
+        <div class="seat-info"><p>GA</p><small>2-DAY GA</small></div>
+        <span>GA</span>
+        <span>GA</span>
+      </label>
+    </div>
+    <button class="continue-btn" disabled>Continue</button>
+  </section>
+
+  <!-- SCREEN 4 : ADD RECIPIENT -->
+  <section class="screen screen-4">
+    <div class="transfer-header">
+      <span class="back-arrow">&lt;</span>
+    </div>
+    <h2 class="screen-title">Add Recipient</h2>
+    <div class="form-card">
+      <div class="input-row"><span class="label">First Name</span><span class="required">Required</span><input type="text" id="firstName"/></div>
+      <div class="input-row"><span class="label">Last Name</span><span class="required">Required</span><input type="text" id="lastName"/></div>
+      <div class="input-row"><span class="label">Email</span><span class="required">Required</span><input type="email" id="email"/></div>
+      <div class="input-row"><span class="label">Confirm Email</span><span class="required">Required</span><input type="email" id="confirmEmail"/></div>
+      <div class="input-row"><span class="label">Message</span><textarea id="msg"></textarea></div>
+    </div>
+    <button class="continue-btn" id="screen4Continue">Continue</button>
+  </section>
+
+  <!-- SCREEN 5 : TRANSFER CONFIRMATION -->
+  <section class="screen screen-5">
+    <div class="transfer-header">
+      <span class="back-arrow">&lt;</span>
+      <div class="steps">
+        <span class="step">1</span>
+        <span class="line"></span>
+        <span class="step">2</span>
+        <span class="line"></span>
+        <span class="step active">3</span>
+      </div>
+    </div>
+    <h2 class="screen-title">Transfer Confirmation</h2>
+    <div class="transfer-summary">
+      <div class="event-info">
+        <img src="../image/coachella.jpeg" class="event-image">
+        <div class="event-details">
+          <p class="event-name">Camp Flog Gnaw 2025</p>
+          <p class="event-date">Jan 20, 2026 | 8:00 PM</p>
+          <p class="event-tickets">2 Tickets</p>
+        </div>
+      </div>
+      <div class="recipient-info">
+        <h4>Recipient</h4>
+        <p><strong>First Name:</strong> <span id="rec-first"></span></p>
+        <p><strong>Last Name:</strong> <span id="rec-last"></span></p>
+        <p><strong>Email:</strong> <span id="rec-email"></span></p>
+        <p><strong>Message:</strong> <span id="rec-msg"></span></p>
+      </div>
+    </div>
+    <div class="confirmation">
+      <div class="success-icon">✅</div>
+      <h3>Transfer Sent!</h3>
+    </div>
+    <div class="actions">
+      <button class="btn edit-btn">Edit Recipient</button>
+      <button class="btn done-btn">Done</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // TAB SWITCHING
+  const tabs = document.querySelectorAll(".tab");
+  const screens = document.querySelectorAll(".screen");
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.screen;
+      tabs.forEach(t => t.classList.remove("active"));
+      screens.forEach(s => s.classList.remove("active"));
+      tab.classList.add("active");
+      document.querySelector(".screen-" + target).classList.add("active");
+    });
+  });
+
+  // SCREEN TRANSITIONS
+  const transferBtn = document.querySelector(".transfer-btn");
+  const closeBtn = document.querySelector(".close-btn");
+  const screen2 = document.querySelector(".screen-2");
+  const screen3 = document.querySelector(".screen-3");
+  const screen4 = document.querySelector(".screen-4");
+  const screen5 = document.querySelector(".screen-5");
+  const screen4

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="rgb(8, 8, 8)">
+  <title>AXS Ticket</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="manifest" href="../manifest.json">
+</head>
+
+<body>
+
+
+
+
+<!-- HEADER -->
+<header class="top-bar">
+  <div class="top-row">
+    <span class="icon">&lt;</span>
+    <span class="material-symbols-outlined info-icon">info</span>
+  </div>
+
+  <h3 class="title" style="margin-top: -40px;">coachella Music Festival 2026 - 3-DAY PASS</h3>
+  <p class="ticket-info">2 Tickets • Fri, April 10 | Empire polo club, indio, CA</p>
+
+  <div class="tabs">
+    <button class="tab" data-screen="2">Tickets (2 Tickets)</button>
+    <button class="tab active" data-screen="1">Event Info</button>
+  </div>
+</header>
+
+<!-- SCREEN 1 : EVENT INFO -->
+<section class="screen screen-1 active">
+  <img src="../image/coachella.jpeg" class="event-img"/>
+  <div class="info">
+    <h2>Coachella Music Festival 2026</h2>
+    <p class="sub">3-DAY PASS</p>
+    <hr style="background-color: rgb(145, 144, 144);">
+    <div class="detail">
+      <h6 style="color: rgb(112, 111, 111);"><strong>Date & Time</strong></h6>
+      <h4 style="margin-top: -20px;"> <p>April 10, 2026 - 12:00 PM</p></h4>
+    </div>
+    <div class="detail">
+      <h6 style="color: rgb(112, 111, 111);"><strong>Venue</strong></h6>
+      <h4 style="margin-top: -20px;"><p>Empire polo club, indio, CA</p></h4>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 2 : TICKET / QR -->
+<section class="screen screen-2">
+  <h3 class="scan-text" style="margin-top: 0px;"></h3>
+  <div class="qr-card" style="margin-top: -10px;">
+    <img src="image/mm.jpeg" style="width: 120%; margin-top: -48px; height: 290px; margin-left: -40px;" class="qr"/>
+  </div>
+  <div class="actions" style="margin-top: -10%;">
+    <button class="btn transfer-btn" style="background-color:#0b0b2a; border:1px solid #17175a;">
+Transfer
+</button>
+    <button class="btn transfer-btn" style="background-color:#0c0cac; border:1px solid #7c7c9b;">Sell</button>
+  </div>
+  <div id="ticket-screen">
+  <!-- Ticket 1 -->
+  <div class="ticket-card">
+    <div class="entry-banner">
+      Entry: <b>WRISTBAND REQUIRED FOR ENTRY</b>
+    </div>
+    <div class="ticket-content">
+      <div class="top-row">
+        <div class="vip-section">
+          <span class="vip-text">3 Day GA</span>
+        </div>
+        <div class="admission">ADMISSION</div>
+      </div>
+      <div class="ga">GA</div>
+      <div class="ticket-id">Ticket ID: 8527</div>
+    </div>
+  </div>
+
+  <!-- Ticket 2 -->
+  <div class="ticket-card" style="margin-top:20px;">
+    <div class="entry-banner">
+      Entry: <b>WRISTBAND REQUIRED FOR ENTRY</b>
+    </div>
+    <div class="ticket-content">
+      <div class="top-row">
+        <div class="vip-section">
+          <span class="vip-text">3 Day GA</span>
+        </div>
+        <div class="admission">ADMISSION</div>
+      </div>
+      <div class="ga">GA</div>
+      <div class="ticket-id">Ticket ID: 9631</div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- SCREEN 3 : TRANSFER -->
+<section class="screen screen-3">
+  <div class="transfer-top">
+    <span class="close-btn">✕</span>
+    <div class="steps">
+      <span class="step active">1. Select</span>
+      <span class="line"></span>
+      <span class="step">2</span>
+      <h6>--------</h6>
+      <span class="step">3</span>
+    </div>
+  </div>
+  <h2 class="transfer-title">Select Seats to Transfer</h2>
+  <div class="transfer-card">
+    <img src="../image/coachella.jpeg" class="event-thumb">
+    <div class="seat-header">
+      <span>Sec</span>
+      <span>Row</span>
+      <span>Seat</span>
+    </div>
+    <label class="seat-row">
+      <input type="checkbox" class="seat-check" >
+      <div class="seat-info" style="margin-left: 20px;">
+        <p>GA</p>
+        <small>3-DAY GA</small>
+      </div>
+      <span style="margin-left: 20px;">GA</span>
+      <span style="margin-left: 20px;">GA</span>
+    </label>
+    <label class="seat-row">
+      <input type="checkbox" class="seat-check">
+      <div class="seat-info" style="margin-left: 20px;">
+        <p>GA</p>
+        <small>3-DAY GA</small>
+      </div>
+      <span style="margin-left: 20px;">GA</span>
+      <span style="margin-left: 20px;">GA</span>
+    </label>
+  </div>
+  <button class="continue-btn enabled" id="screen3-continue">Continue</button>
+</section>
+
+<!-- SCREEN 4 : ADD RECIPIENT -->
+<section class="screen screen-4">
+
+  <!-- Progress Header -->
+  <div class="transfer-header">
+    <span class="back-arrow">&lt;</span>
+
+    <div class="steps">
+      <span class="step active" style="width: 30px; height: 30px; border-radius: 100%;">1</span>
+      <span class="line"></span>
+      <span class="step active">2. Recipient</span>
+      <span class="line"></span>
+      <span class="step">3</span>
+    </div>
+  </div>
+
+  <h2 class="screen-title">Add Recipient</h2>
+
+  <!-- Event Info -->
+<div class="event-info">
+  <img src="../image/coachella.jpeg" alt="Event" class="event-image">
+  <div class="event-details">
+    <p class="event-name"></p>
+    <p class="event-date">April 10, 2026 | 12:00 PM</p>
+    <p class="event-tickets"></p>
+  </div>
+  <button class="ticket-btn" style="background-color: rgb(80, 79, 78); height: 40px; border-radius: 10px;">
+    2 <span class="arrow">→</span>
+  </button>
+</div>
+
+  <!-- Recent Recipients -->
+  <div class="form-group">
+    <label>Recent Recipients</label>
+    <select class="select-box">
+      <option>Select</option>
+    </select>
+  </div>
+
+  <!-- Recipient header -->
+  <div class="recipient-header">
+    <span>Recipient</span>
+    <span class="link">Add from Contacts</span>
+  </div>
+
+  <!-- Form Card -->
+  <div class="form-card">
+    <div class="input-row">
+      <span class="label">First Name</span>
+      <span class="required">Required</span>
+      <input type="text" placeholder="First Name" />
+    </div>
+
+    <div class="input-row">
+      <span class="label">Last Name</span>
+      <span class="required">Required</span>
+      <input type="text" placeholder="Last Name" />
+    </div>
+
+    <div class="input-row">
+      <span class="label">Email</span>
+      <span class="required">Required</span>
+      <input type="email" placeholder="Email" />
+    </div>
+
+    <div class="input-row">
+      <span class="label">Confirm Email</span>
+      <span class="required">Required</span>
+      <input type="email" placeholder="Confirm Email" />
+    </div>
+  </div>
+
+  <!-- Message -->
+  <div class="form-group" style="width: 95%;">
+    <label>Message to Recipient</label>
+    <textarea placeholder="Add a personal message (optional)"></textarea>
+  </div>
+
+  <!-- Continue Button -->
+  <button class="continue-btn">Continue</button>
+
+</section>
+
+</div>
+
+<script src="../js/script.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(() => console.log('Service Worker registered'))
+      .catch(err => console.log('Service Worker failed:', err));
+  }
+</script>
+
+</body>
+</html>

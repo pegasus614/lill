@@ -1,0 +1,598 @@
+/* =========================
+       🌐 GLOBAL / APP STYLES
+       ========================= */
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0c0c29;
+      color: white;
+      overflow-x: hidden;
+    }
+/* Full screen password modal */
+#password-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #121229;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Password box */
+.password-box {
+  background: #1f1f3a;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+.password-box h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.password-box input {
+  width: 80%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+}
+
+.password-box button {
+  padding: 12px 24px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#password-error {
+  color: #ff5555;
+  margin-top: 10px;
+  display: none;
+  font-size: 14px;
+}
+
+/* Hide main content initially */
+#main-content {
+  display: none;
+  text-align: center;
+  margin-top: 100px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+
+    /* =========================
+       🔝 TOP HEADER
+       ========================= */
+    .top-bar {
+      background-color:  #0c0c29;
+      padding: 14px;
+      border-bottom: 1px solid #0c0c0c;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .icon {
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    .info-icon {
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 15px;
+      margin: 8px 0 2px;
+    }
+
+    .ticket-info {
+      text-align: center;
+      font-size: 10px;
+      color: #ccc;
+      margin: 0 0 10px;
+    }
+
+    /* =========================
+       📑 TABS (SCREEN SWITCH)
+       ========================= */
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #222;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 12px;
+      background: none;
+      color: #aaa;
+      border: none;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      color: #00aaff;
+      border-bottom: 2px solid #00aaff;
+    }
+
+    /* =========================
+       🧱 SCREEN VISIBILITY LOGIC
+       ========================= */
+    .screen {
+      display: none;
+      padding: 16px;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* =================================================
+       🟦 SCREEN 1 – EVENT INFO
+       ================================================= */
+    .event-img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .info h2 {
+      margin-top: 14px;
+      font-size: 25px;
+    }
+
+    .sub {
+      opacity: 0.7;
+    }
+
+    .detail {
+      margin-top: 12px;
+    }
+
+    /* =================================================
+       🟨 SCREEN 2 – TICKET / QR CODE
+       ================================================= */
+    .scan-text {
+      text-align: center;
+      margin: 16px 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .qr-card {
+      color: black;
+      padding: 16px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .qr {
+      width: 200px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px;
+      background: #1d3be4;
+      border: none;
+      color: white;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #ticket-screen body {
+  background:#0b0b2a;
+  font-family:Arial, Helvetica, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+#ticket-screen .ticket-card {
+  width:400px;
+  background:#0e1c4d;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+#ticket-screen .entry-banner {
+  background:#ff1a1a;
+  color:white;
+  text-align:center;
+  padding:14px;
+  font-size:14px;
+  font-weight:500;
+}
+
+#ticket-screen .ticket-content {
+  padding:22px;
+  color:white;
+}
+
+#ticket-screen .top-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+#ticket-screen .vip-section {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+#ticket-screen .star {
+  width:34px;
+  height:34px;
+  background:#3b82f6;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+}
+
+#ticket-screen .vip-text {
+  font-size:18px;
+}
+
+#ticket-screen .admission {
+  font-size:18px;
+  color:#d1d5db;
+}
+
+#ticket-screen .ga {
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+#ticket-screen .ticket-id {
+  color:#cbd5e1;
+  font-size:18px;
+}
+    /* =================================================
+       🟪 SCREEN 3 – SELECT SEATS TO TRANSFER
+       ================================================= */
+    .screen-3 {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 420px;
+      max-width: 95%;
+      height: 100vh;
+      background: #0c0c29;
+      padding: 16px;
+      z-index: 100;
+      overflow-y: auto;
+      border-radius: 16px;
+      display: none;
+    }
+
+    .transfer-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+    }
+
+    .close-btn {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .steps {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .step {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgb(216, 213, 213);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: white;
+    }
+
+    .step.active {
+      background: #6f4fff;
+      width: 70px;
+      height: 30px;
+      border-radius: 13px;
+    }
+
+    .line {
+      flex: 1;
+      height: 2px;
+      background: #333;
+    }
+
+    .transfer-title {
+      margin: 16px 0;
+      font-size: 18px;
+    }
+
+    .transfer-card {
+      border: 2px solid #26266e;
+      border-radius: 16px;
+      padding: 14px;
+      height: 460px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .event-thumb {
+      width: 60px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .seat-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      font-size: 12px;
+      opacity: 0.9;
+      margin: 0;
+      padding: 8px 0;
+      background-color: #1d1d5c;
+      color: #fff;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .seat-row {
+      display: grid;
+      grid-template-columns: 24px 1fr 1fr 1fr;
+      align-items: center;
+      padding: 10px 0;
+      cursor: pointer;
+    }
+
+    .seat-info p {
+      margin: 0;
+    }
+
+    .seat-info small {
+      opacity: 0.6;
+    }
+
+    .continue-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 30px;
+      border: none;
+      background: #300fee;
+      color: white;
+      font-size: 16px;
+      cursor: not-allowed;
+    }
+
+    .continue-btn.enabled {
+      background: #007bff;
+      cursor: pointer;
+    }
+
+    /* =========================
+   🟪 SCREEN 4 – ADD RECIPIENT (NO ZOOM FIX)
+   ========================= */
+
+.screen-4 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background: #121229;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 200;
+  box-sizing: border-box;
+  display: none;
+}
+
+/* Header */
+.screen-4 .transfer-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.screen-4 .back-arrow {
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.screen-4 .screen-title {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+/* Event Info */
+.screen-4 .event-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1f1f3a;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.screen-4 .event-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.screen-4 .event-details {
+  flex: 1;
+  margin: 0 12px;
+}
+
+.screen-4 .ticket-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Form */
+.screen-4 .form-group {
+  margin-bottom: 14px;
+}
+
+.screen-4 .form-group label {
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.screen-4 .select-box {
+  width: 100%;
+  padding: 12px;
+  background: #1f1f3a;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px; /* ✅ NO ZOOM */
+}
+
+/* Recipient header */
+.screen-4 .recipient-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #aaa;
+  margin: 10px 0 6px;
+}
+
+.screen-4 .recipient-header .link {
+  color: #3b82f6;
+  cursor: pointer;
+}
+
+/* Form card */
+.screen-4 .form-card {
+  background: #1f1f3a;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.screen-4 .input-row {
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+.screen-4 .input-row:last-child {
+  border-bottom: none;
+}
+
+.screen-4 .label {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.screen-4 .required {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  font-size: 11px;
+  color: #777;
+}
+
+/* 🔥 IMPORTANT FIX */
+.screen-4 .input-row input,
+.screen-4 textarea {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px; /* ✅ REQUIRED */
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* Textarea */
+.screen-4 textarea {
+  height: 80px;
+  padding: 10px;
+  background: #1f1f3a;
+  border-radius: 12px;
+  resize: none;
+}
+
+/* Button */
+.screen-4 .continue-btn {
+  width: 100%;
+  padding: 14px;
+  background: #007bff;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .screen-4 {
+    padding: 12px;
+  }
+
+  /* KEEP 16px — DO NOT REDUCE */
+  .screen-4 .input-row input,
+  .screen-4 .select-box,
+  .screen-4 textarea {
+    font-size: 16px;
+  }
+}

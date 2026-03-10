@@ -1,0 +1,91 @@
+/* ---------- SCREEN 5 ---------- */
+.screen-5 {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  max-width: 95%;
+  height: 100vh;
+  background: #0c0c29;
+  padding: 16px;
+  z-index: 100;
+  overflow-y: auto;
+  box-sizing: border-box;
+  display: none; /* hidden by default */
+  color: white;
+}
+
+/* Transfer Summary */
+.transfer-summary {
+  background: #1f1f3a;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.transfer-summary .event-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.transfer-summary .event-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.transfer-summary .event-details p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+.recipient-info h4 {
+  margin: 8px 0;
+}
+
+.recipient-info p {
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+/* Confirmation */
+.confirmation {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.success-icon {
+  font-size: 50px;
+  margin-bottom: 8px;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  gap: 12px;
+  background-color: rgb(8, 8, 8)";
+}
+
+.actions .btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.actions .edit-btn {
+  background: #777;
+  color: white;
+}
+
+.actions .done-btn {
+  background: #007bff;
+  color: white;
+}
